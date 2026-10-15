@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Dashboard | AI Resume Analyzer</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-badge">⚡</div>
+                <div class="logo-text">AI Resume<br><span>Analyzer</span></div>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="#analyzer-view" id="navDashboard" class="nav-item active">
+                    <span class="nav-icon">▦</span>
+                    <span>ATS Analyzer</span>
+                </a>
+
+                <a href="#jobs-view" id="navJobs" class="nav-item">
+                    <span class="nav-icon">💼</span>
+                    <span>Job Recommendations</span>
+                </a>
+
+                <a href="#roadmap-view" id="navRoadmap" class="nav-item">
+                    <span class="nav-icon">🗺️</span>
+                    <span>Career Roadmap</span>
+                </a>
+
+                <a href="#mock-view" id="navMock" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>Mock Interview Agent</span>
+                </a>
+
+                <a href="#aptitude-view" id="navAptitude" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span>Aptitude & Core Test</span>
+                </a>
+
+                <a href="#tips-view" id="navTips" class="nav-item">
+                    <span class="nav-icon">💡</span>
+                    <span>Resume Blueprint Tips</span>
+                </a>
+
+                <a href="#etiquette-view" id="navEtiquette" class="nav-item">
+                    <span class="nav-icon">👔</span>
+                    <span>Interview & Dressing Guide</span>
+                </a>
+
+                <a href="#history-view" id="navHistory" class="nav-item">
+                    <span class="nav-icon">🕘</span>
+                    <span>History & Reports</span>
+                </a>
+
+                <a href="#profile-view" id="navProfile" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span>Profile & Portals</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <button id="logoutButton" class="logout-button">
+                    <span>↪</span>
+                    <span>Sign Out</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <header class="topbar">
+
+                <div>
+                    <p class="page-label">Enterprise Career Platform</p>
+                    <h1 id="welcomeUserHeading">Welcome back, Admin 👋</h1>
+                </div>
+
+                <div class="profile-area" id="topbarProfile">
+
+                    <div class="profile-avatar" id="topAvatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+                        <strong id="topUserName">Admin</strong>
+                        <span id="topUserTitle">Senior Analyst</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- ================= VIEW 1: ANALYZER & DASHBOARD ================= -->
+            <div id="analyzerView" class="view-section">
+
+                <!-- Statistics -->
+                <section class="stats-container">
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div>
+                            <p>Latest ATS Score</p>
+                            <h2 id="atsStat">--</h2>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">💡</div>
+                        <div>
+                            <p>Skills Extracted</p>
+                            <h2 id="skillsStat">--</h2>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📄</div>
+                        <div>
+                            <p>Total Evaluations</p>
+                            <h2 id="resumeStat">0</h2>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Upload Section -->
+                <section class="upload-section" id="upload-section">
+
+                    <div class="section-title">
+                        <div>
+                            <p class="page-label">ALGORITHMIC DIAGNOSTICS</p>
+                            <h2>Upload & Benchmark Resume</h2>
+                        </div>
+                    </div>
+
+                    <div class="upload-card">
+
+                        <div class="upload-icon-box">
+                            📄
+                        </div>
+
+                        <h3>Submit Candidate Document</h3>
+
+                        <p>
+                            Upload your resume to perform instant ATS parsing, extract recognized domain frameworks, cross-reference role competencies, and generate optimization recommendations.
+                        </p>
+
+                        <!-- Target Role Selection -->
+                        <div class="role-selector-container">
+                            <label for="targetRoleSelect">Target Job Profile:</label>
+                            <select id="targetRoleSelect" class="custom-select">
+                                <option value="general">General Tech / Full Stack</option>
+                                <option value="software_engineer">Software Engineer</option>
+                                <option value="frontend_developer">Frontend Developer</option>
+                                <option value="backend_developer">Backend Developer</option>
+                                <option value="data_scientist">Data Scientist / AI Engineer</option>
+                                <option value="devops_engineer">DevOps & Cloud Engineer</option>
+                            </select>
+                        </div>
+
+                        <p class="supported-files">
+                            Institutional formats supported: PDF, DOCX (Text-based)
+                        </p>
+
+                        <!-- Hidden file input -->
+                        <input
+                            type="file"
+                            id="resumeFile"
+                            accept=".pdf,.docx"
+                            hidden
+                        >
+
+                        <button id="chooseFileButton" class="choose-button">
+                            Select Resume Document
+                        </button>
+
+                        <p id="selectedFile">
+                            No file selected
+                        </p>
+
+                        <button id="analyzeButton" class="analyze-button">
+                            <span>Execute ATS Analysis</span>
+                            <span>⚡</span>
+                        </button>
+
+                        <p id="uploadMessage"></p>
+
+                    </div>
+
+                </section>
+
+                <!-- Results Section -->
+                <section class="results-section" id="resultsSection" style="display: none;">
+
+                    <div class="section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div>
+                            <p class="page-label">EVALUATION METRICS</p>
+                            <h2 id="resultsHeading">Resume Insights & Score Breakdown</h2>
+                        </div>
+                        <button id="rebuild100Btn" class="primary-button" style="margin: 0; background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);">
+                            <span>⚡ Rebuild to 100% ATS Ready</span>
+                        </button>
+                    </div>
+
+                    <!-- 100% ATS Transformation Banner (shown after rebuild) -->
+                    <div id="rebuildSuccessBanner" style="display: none; margin-bottom: 24px; padding: 24px 30px; border-radius: 20px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(6, 95, 70, 0.25) 100%); border: 1px solid rgba(16, 185, 129, 0.45); animation: fadeIn 0.4s ease;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                            <div>
+                                <span class="badge" style="background: rgba(16, 185, 129, 0.3); color: #86efac; font-weight: 800; padding: 6px 14px; border-radius: 20px;">🏆 100% PERFECT ATS SCORE</span>
+                                <h3 style="font-size: 22px; font-weight: 800; margin: 8px 0 4px; color: #ffffff;">Resume Rebuilt & Interview Ready!</h3>
+                                <p style="color: #a7f3d0; font-size: 14px;">All required domain keywords, high-impact XYZ action metrics, and structural sections injected successfully.</p>
+                            </div>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <button id="downloadPdfBtn" class="primary-button" style="margin: 0; padding: 12px 20px; background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);">
+                                    <span>📥 Download 100% ATS PDF</span>
+                                </button>
+                                <button id="downloadDocxBtn" class="primary-button" style="margin: 0; padding: 12px 20px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);">
+                                    <span>📄 Download 100% ATS Word (.docx)</span>
+                                </button>
+                                <button id="autoApplyAllBtn" class="primary-button" style="margin: 0; padding: 12px 22px;">
+                                    <span>🚀 1-Click Auto-Apply</span>
+                                </button>
+                                <button id="startInterviewPrepBtn" class="choose-button" style="margin: 0; padding: 12px 18px; background: rgba(255, 255, 255, 0.15);">
+                                    <span>🎤 Practice Mock Interview</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-grid">
+
+                        <!-- ATS Score -->
+                        <div class="result-card score-card">
+
+                            <h3>ATS Compatibility Index</h3>
+
+                            <div class="score-circle">
+                                <span id="atsScore">--</span>
+                            </div>
+
+                            <p id="scoreMessage">
+                                Upload a resume to see your score.
+                            </p>
+
+                            <button id="scoreCardRebuildBtn" class="primary-button" style="margin: 12px 0; width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); font-size: 14px; padding: 12px;">
+                                <span>⚡ Rebuild to 100% ATS Ready</span>
+                            </button>
+
+                            <div class="contact-badges" id="contactBadges">
+                                <span class="badge" id="badgeEmail">📧 Email: --</span>
+                                <span class="badge" id="badgePhone">📱 Phone: --</span>
+                                <span class="badge" id="badgeLinks">🔗 Portfolio: --</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Skills Detected -->
+                        <div class="result-card">
+
+                            <h3>Technical Skills Identified</h3>
+
+                            <div id="skillsList" class="skills-list">
+                                <span class="empty-result">No skills detected yet.</span>
+                            </div>
+
+                            <div class="skills-missing-box">
+                                <h4>Target Profile Gap Analysis (Missing Skills)</h4>
+                                <div id="missingSkillsList" class="skills-list missing-list">
+                                    <span class="empty-result">None identified.</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Suggestions -->
+                        <div class="result-card suggestions-card">
+
+                            <h3>Algorithmic Recommendations & Actionable Tweaks</h3>
+
+                            <ul id="suggestionsList">
+                                <li>Upload a resume to receive personalized recommendations.</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Extracted / Rebuilt Text -->
+                    <div class="result-card extracted-card">
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                            <h3 id="extractedCardTitle" style="margin: 0;">Normalized Parsed Text (ATS Ingestion Stream)</h3>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button id="quickDownloadPdfBtn" class="btn-sm" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">📥 PDF</button>
+                                <button id="quickDownloadDocxBtn" class="btn-sm" style="background: rgba(59, 130, 246, 0.2); color: #93c5fd; border-color: rgba(59, 130, 246, 0.4);">📄 DOCX</button>
+                                <button id="copyResumeTextBtn" class="btn-sm" style="background: rgba(99, 102, 241, 0.2); color: #c4b5fd; border-color: rgba(99, 102, 241, 0.4);">📋 Copy Text</button>
+                            </div>
+                        </div>
+
+                        <div id="extractedText" class="extracted-text">
+                            Resume text will appear here after analysis.
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+            <!-- ================= VIEW: JOB RECOMMENDATIONS ================= -->
+            <div id="jobsView" class="view-section" style="display: none;">
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">CAREER OPPORTUNITIES</p>
+                        <h2>Recommended Job Postings Across Major Platforms</h2>
+                    </div>
+                </div>
+
+                <div class="role-selector-container" style="justify-content: flex-start; margin-bottom: 24px;">
+                    <label for="jobRoleFilter">Filter Opportunity Domain:</label>
+                    <select id="jobRoleFilter" class="custom-select">
+                        <option value="software_engineer">Software Engineer</option>
+                        <option value="frontend_developer">Frontend Developer</option>
+                        <option value="backend_developer">Backend Developer</option>
+                        <option value="data_scientist">Data Scientist / AI Engineer</option>
+                        <option value="devops_engineer">DevOps & Cloud Engineer</option>
+                        <option value="general">General / Multi-domain</option>
+                    </select>
+                </div>
+
+                <div id="jobsContainer" class="feature-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <!-- Dynamically populated via script.js -->
+                </div>
+            </div>
+
+            <!-- ================= VIEW: CAREER ROADMAP ================= -->
+            <div id="roadmapView" class="view-section" style="display: none;">
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">GROWTH & MASTERY</p>
+                        <h2>Structured Career Roadmap & Learning Resources</h2>
+                    </div>
+                </div>
+
+                <div class="role-selector-container" style="justify-content: flex-start; margin-bottom: 24px;">
+                    <label for="roadmapRoleFilter">Select Career Track:</label>
+                    <select id="roadmapRoleFilter" class="custom-select">
+                        <option value="software_engineer">Software Engineer Track</option>
+                        <option value="frontend_developer">Frontend Engineering Track</option>
+                        <option value="backend_developer">Backend Engineering Track</option>
+                        <option value="data_scientist">Data Science & AI Track</option>
+                        <option value="devops_engineer">DevOps & Cloud Track</option>
+                    </select>
+                </div>
+
+                <div id="roadmapContainer">
+                    <!-- Dynamically populated via script.js -->
+                </div>
+            </div>
+
+            <!-- ================= VIEW: MOCK INTERVIEW AGENT ================= -->
+            <div id="mockView" class="view-section" style="display: none;">
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">INTERACTIVE PREPARATION</p>
+                        <h2>AI Mock Interview Agent & Evaluation</h2>
+                    </div>
+                </div>
+
+                <div class="result-card" style="margin-bottom: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+                        <div class="role-selector-container" style="justify-content: flex-start; margin: 0;">
+                            <label for="mockRoleSelect">Target Domain:</label>
+                            <select id="mockRoleSelect" class="custom-select">
+                                <option value="software_engineer">Software Engineering</option>
+                                <option value="frontend_developer">Frontend Development</option>
+                                <option value="backend_developer">Backend Systems</option>
+                                <option value="data_scientist">Data Science & ML</option>
+                                <option value="devops_engineer">DevOps & Cloud</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <button id="voiceInterviewerToggle" class="choose-button" style="margin: 0; padding: 10px 18px; background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4);">
+                                <span>🔊 Read Question Aloud</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="mockQuestionCard">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="badge" id="mockCategoryBadge" style="background: rgba(99, 102, 241, 0.2); color: var(--primary-light); padding: 5px 12px; border-radius: 20px; font-weight: 700;">Question 1</span>
+                            <span id="voiceAgentStatus" style="font-size: 13px; color: #a7f3d0; display: none;">🎙️ Voice Agent Listening...</span>
+                        </div>
+
+                        <h3 id="mockQuestionText" style="margin: 16px 0 12px; font-size: 18px; line-height: 1.5; color: #ffffff;">Loading question...</h3>
+                        
+                        <div style="position: relative; margin-bottom: 16px;">
+                            <textarea id="mockAnswerInput" rows="5" placeholder="Speak via microphone or type your structured answer here (explain core architecture, tradeoffs, and key concepts)..." style="width: 100%; padding: 16px; border-radius: 12px; background: rgba(9, 13, 22, 0.85); border: 1px solid var(--border-color); color: #fff; font-family: var(--font-primary); font-size: 14px; outline: none;"></textarea>
+                            <button id="micRecordBtn" title="Speak Answer" style="position: absolute; right: 12px; bottom: 16px; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); color: #fca5a5; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600;">
+                                <span id="micIcon">🎙️</span>
+                                <span id="micLabel">Speak Answer</span>
+                            </button>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                            <button id="submitMockAnswerBtn" class="primary-button" style="margin: 0; padding: 12px 28px;">
+                                <span>Evaluate with AI Agent</span>
+                                <span>🤖</span>
+                            </button>
+                            <button id="nextMockQuestionBtn" class="choose-button" style="margin: 0; padding: 12px 24px;">Next Question →</button>
+                        </div>
+
+                        <div id="mockEvaluationResult" style="display: none; margin-top: 24px; padding: 20px; border-radius: 14px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color);">
+                            <!-- Evaluated feedback shown here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= VIEW: APTITUDE TEST ================= -->
+            <div id="aptitudeView" class="view-section" style="display: none;">
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">SKILL ASSESSMENT</p>
+                        <h2>Aptitude, Core CS & Problem Solving Assessment</h2>
+                    </div>
+                </div>
+
+                <div class="role-selector-container" style="justify-content: flex-start; margin-bottom: 24px;">
+                    <label for="aptitudeRoleFilter">Assessment Profile Track:</label>
+                    <select id="aptitudeRoleFilter" class="custom-select">
+                        <option value="software_engineer">Software Engineering & Data Structures</option>
+                        <option value="frontend_developer">Frontend, DOM & Web Performance</option>
+                        <option value="backend_developer">Backend Systems, DB & Networking</option>
+                        <option value="data_scientist">Data Science, Math, Probability & ML</option>
+                        <option value="devops_engineer">DevOps, Cloud, Linux & Infrastructure</option>
+                    </select>
+                </div>
+
+                <div id="aptitudeContainer">
+                    <!-- Dynamically populated via script.js -->
+                </div>
+            </div>
+
+            <!-- ================= VIEW: RESUME TIPS ================= -->
+            <div id="tipsView" class="view-section" style="display: none;">
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">BEST PRACTICES</p>
+                        <h2>Elite Resume Blueprints & ATS Optimization Guidelines</h2>
+                    </div>
+                </div>
+
+                <div id="tipsContainer" class="feature-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <!-- Dynamically populated via script.js -->
+                </div>
+            </div>
+
+
+            <!-- ================= VIEW: INTERVIEW & DRESSING ETIQUETTE ================= -->
+            <div id="etiquetteView" class="view-section" style="display: none;">
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">EXECUTIVE BEHAVIORAL & ATTIRE PROTOCOLS</p>
+                        <h2>Executive Interview Etiquette & Dressing Guide</h2>
+                    </div>
+                </div>
+
+                <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 24px;">
+                    <!-- Dressing Guide -->
+                    <div class="result-card">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <span style="font-size: 28px;">👔</span>
+                            <div>
+                                <h3 style="margin: 0; color: #ffffff;">Professional Dressing Standard</h3>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-muted);">MNC & Tech Tier-1 Norms</p>
+                            </div>
+                        </div>
+                        <ul style="color: #cbd5e1; font-size: 14px; line-height: 1.7; padding-left: 20px; margin-bottom: 16px;">
+                            <li><strong style="color:#86efac;">Virtual Camera Presence:</strong> Wear solid colors (navy, charcoal, pastel blue, crisp white). Avoid thin stripes or houndstooth that cause moiré camera flicker.</li>
+                            <li><strong style="color:#86efac;">Formal / Smart Casual:</strong> Tailored collared shirts, blazers, or business blouses. Ensure clean grooming and well-fitted attire.</li>
+                            <li><strong style="color:#86efac;">Lighting & Posture:</strong> Position primary lighting source in front of you. Keep camera at eye level with 30% headspace.</li>
+                        </ul>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <a href="https://www.indeed.com/career-advice/interviewing/how-to-dress-for-a-job-interview" target="_blank" class="nav-btn-secondary" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <span>🌐 Indeed Attire Guide</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://hbr.org/2022/01/what-to-wear-to-an-interview" target="_blank" class="nav-btn-secondary" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <span>🌐 Harvard Business Review</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Body Language & Voice -->
+                    <div class="result-card">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <span style="font-size: 28px;">🗣️</span>
+                            <div>
+                                <h3 style="margin: 0; color: #ffffff;">Voice Tone & Non-Verbal Cues</h3>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-muted);">Confidence & Articulation</p>
+                            </div>
+                        </div>
+                        <ul style="color: #cbd5e1; font-size: 14px; line-height: 1.7; padding-left: 20px; margin-bottom: 16px;">
+                            <li><strong style="color:#86efac;">Direct Camera Eye-Contact:</strong> Look directly at your camera lens when speaking, not just the screen, to project genuine confidence.</li>
+                            <li><strong style="color:#86efac;">The 2-Second Pause Rule:</strong> Take a 2-second thoughtful breath before answering complex questions rather than rushing or using filler sounds ("um", "like").</li>
+                            <li><strong style="color:#86efac;">Pacing & Modulation:</strong> Speak at ~140 words per minute. Enunciate technical keywords clearly and concisely.</li>
+                        </ul>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <a href="https://www.coursera.org/articles/how-to-prepare-for-an-interview" target="_blank" class="nav-btn-secondary" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <span>🌐 Coursera Voice & Posture</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://www.toastmasters.org/resources/public-speaking-tips" target="_blank" class="nav-btn-secondary" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <span>🌐 Toastmasters Speech Tips</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- STAR Methodology -->
+                    <div class="result-card">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <span style="font-size: 28px;">🎯</span>
+                            <div>
+                                <h3 style="margin: 0; color: #ffffff;">The STAR Storytelling Model</h3>
+                                <p style="margin: 0; font-size: 13px; color: var(--text-muted);">Behavioral & Architecture Scenarios</p>
+                            </div>
+                        </div>
+                        <ul style="color: #cbd5e1; font-size: 14px; line-height: 1.7; padding-left: 20px; margin-bottom: 16px;">
+                            <li><strong style="color:#86efac;">Situation (15%):</strong> Briefly set the project context and high-stakes problem.</li>
+                            <li><strong style="color:#86efac;">Task (15%):</strong> State the objective and technical constraint you needed to solve.</li>
+                            <li><strong style="color:#86efac;">Action (50%):</strong> Highlight *your* specific engineering actions, tools, and algorithms.</li>
+                            <li><strong style="color:#86efac;">Result (20%):</strong> Deliver quantifiable business metrics (e.g., "Reduced latency by 45%").</li>
+                        </ul>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <a href="https://www.themuse.com/advice/star-interview-method" target="_blank" class="nav-btn-secondary" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <span>🌐 The Muse STAR Framework</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://www.amazon.jobs/content/en/how-we-hire/interviewing-at-amazon" target="_blank" class="nav-btn-secondary" style="font-size: 12px; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <span>🌐 Amazon Leadership Principles</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= VIEW 2: RESUME HISTORY ================= -->
+            <div id="historyView" class="view-section" style="display: none;">
+
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">EVALUATION REPOSITORY</p>
+                        <h2>Archived Reports & Score History</h2>
+                    </div>
+                </div>
+
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Document Filename</th>
+                                <th>Target Role</th>
+                                <th>ATS Score</th>
+                                <th>Skills Detected</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center">Loading evaluation history...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- ================= VIEW 3: PROFILE ================= -->
+            <div id="profileView" class="view-section" style="display: none;">
+
+                <div class="section-title">
+                    <div>
+                        <p class="page-label">ACCOUNT CONFIGURATION</p>
+                        <h2>Professional Profile & Portal Integration</h2>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-header-large">
+                        <div class="profile-avatar-large" id="profileLargeAvatar">A</div>
+                        <div>
+                            <h3 id="profileNameDisplay" style="font-size: 20px; font-weight: 800;">Admin</h3>
+                            <p id="profileEmailDisplay" style="color: var(--text-muted); font-size: 14px;">admin@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <form id="profileForm" class="profile-form">
+                        <div class="input-group">
+                            <label for="profileNameInput">Full Legal Name</label>
+                            <input type="text" id="profileNameInput" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="profileTitleInput">Professional Role / Title</label>
+                            <input type="text" id="profileTitleInput" placeholder="e.g. Senior Backend Engineer">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="profileLinkedInInput">LinkedIn Profile URL (Auto-Apply Connected)</label>
+                            <input type="url" id="profileLinkedInInput" placeholder="https://linkedin.com/in/yourname">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="profileGithubInput">GitHub Profile URL (Repository Assessment)</label>
+                            <input type="url" id="profileGithubInput" placeholder="https://github.com/yourusername">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Registered Account Email (Immutable)</label>
+                            <input type="email" id="profileEmailInput" disabled>
+                        </div>
+
+                        <button type="submit" class="primary-button" style="border:none; cursor:pointer;">
+                            <span>Save Profile & Connected Portals</span>
+                            <span>✓</span>
+                        </button>
+                        <p id="profileMessage"></p>
+                    </form>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Portal | AI Resume Analyzer</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- Back to Home -->
+    <a href="index.html" class="back-home">
+        <span>←</span>
+        <span>Return to Platform Home</span>
+    </a>
+
+    <div class="login-page">
+
+        <!-- Enterprise Auth Card -->
+        <div class="login-card">
+
+            <div class="logo-header">
+                <div class="logo-icon-badge">⚡</div>
+                <div class="logo-title">AI Resume <span>Analyzer</span></div>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="auth-tabs">
+                <button type="button" id="tabLogin" class="tab-btn active">Sign In</button>
+                <button type="button" id="tabRegister" class="tab-btn">Create Account</button>
+            </div>
+
+            <h1 id="authTitle">Welcome Back</h1>
+            <p class="subtitle" id="authSubtitle">
+                Sign in to access your resume analysis engine.
+            </p>
+
+            <!-- Form -->
+            <form id="authForm">
+
+                <!-- Name field (shown on register) -->
+                <div class="input-group" id="nameGroup" style="display: none;">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="e.g. Alex Morgan"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Work / Personal Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="name@company.com"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                        required
+                    >
+                </div>
+
+                <!-- Professional Title (shown on register) -->
+                <div class="input-group" id="titleGroup" style="display: none;">
+                    <label for="title">Current Role / Professional Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="e.g. Senior Software Engineer"
+                    >
+                </div>
+
+                <!-- Remember & Forgot -->
+                <div class="login-options" id="loginOptions">
+                    <label class="remember">
+                        <input type="checkbox" id="remember">
+                        <span>Remember session</span>
+                    </label>
+
+                    <a href="#" id="forgotPassword" class="demo-link">
+                        ⚡ Quick Demo Fill
+                    </a>
+                </div>
+
+                <button type="submit" class="login-button" id="submitButton">
+                    Sign In
+                </button>
+
+                <!-- Error / Success Message -->
+                <p id="loginMessage"></p>
+
+            </form>
+
+            <!-- Toggle Mode -->
+            <div class="signup" id="togglePrompt">
+                Don't have an account?
+                <a href="#" id="toggleLink">Create one free</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+
+</body>
+</html>
